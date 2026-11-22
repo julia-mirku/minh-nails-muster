@@ -642,6 +642,19 @@ $('#carPrev').addEventListener('click',()=>goSlide(curSlide()-1));
 $('#carNext').addEventListener('click',()=>goSlide(curSlide()+1));
 carTrack.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();goSlide(curSlide()+1)}if(e.key==='ArrowLeft'){e.preventDefault();goSlide(curSlide()-1)}});
 carTrack.tabIndex=0;
+/* reviews glide on their own, slowly; any touch, hover, arrow or dot pauses it, resumes a few seconds later */
+(function(){const car=$('#car'),sec=$('#stimmen');const STEP=6000,REST=9000;let hold=false,until=0,last=Date.now();
+  const nap=()=>{until=Date.now()+REST;last=Date.now()};
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  car.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')hold=true});
+  car.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'){hold=false;nap()}});
+  car.addEventListener('pointerdown',nap);car.addEventListener('touchstart',nap,{passive:true});car.addEventListener('touchend',nap,{passive:true});
+  car.addEventListener('wheel',nap,{passive:true});car.addEventListener('focusin',nap);
+  ['#carPrev','#carNext'].forEach(id=>$(id).addEventListener('click',nap));carDots.addEventListener('click',nap);
+  setInterval(()=>{if(hold||document.hidden||Date.now()<until||Date.now()-last<STEP)return;
+    const r=sec.getBoundingClientRect();if(r.bottom<innerHeight*.2||r.top>innerHeight*.8){last=Date.now();return}
+    if(!car.classList.contains('ready')){last=Date.now();return}
+    last=Date.now();goSlide(curSlide()+1)},500)})();
 
 
 /* Fotostapel: the top photo goes to the back of the deck (click, arrow, drag). No wheel handling: the wheel always scrolls the page. */
