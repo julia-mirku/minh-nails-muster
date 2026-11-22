@@ -271,22 +271,28 @@ footer .soc{margin-left:auto;display:flex;gap:22px}
 @media (max-width:700px){.svc-grid,.v2{grid-template-columns:1fr}.stage{max-height:none}}
 
 .stage{touch-action:pan-y}
-/* Unter der Lupe */
-.lupe{background:radial-gradient(45% 55% at 100% 30%,rgba(176,222,214,.4),transparent 70%),var(--bg)}
-.lupe-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,72px);align-items:center}
-.lupe-lead{color:var(--ink2);font-size:17.5px;margin:18px 0 26px;max-width:28em}
-.lupe-thumbs{display:flex;gap:12px}
-.lt{width:clamp(64px,7vw,92px);aspect-ratio:4/5;border-radius:14px;overflow:hidden;transition:box-shadow .3s}
-.lt img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
-.lt.on{box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--ink)}
-@media (hover:hover){.ready .lt:not(.on):hover{box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--acc2)}.ready .lt:hover img{transform:scale(1.07)}}
-.lupe-ph{position:relative;height:clamp(340px,calc(100vh - 200px),700px);height:clamp(340px,calc(100dvh - 200px),700px);border-radius:32px;overflow:hidden;background:#E3EEEB;box-shadow:0 40px 80px -50px rgba(31,43,42,.55);touch-action:pan-y}
-.lupe-ph>img{width:100%;height:100%;object-fit:cover;transition:opacity .45s}
-@media (hover:hover){.ready.lupe-ph{cursor:none}}
-.lens{position:absolute;left:0;top:0;width:clamp(150px,16vw,230px);height:clamp(150px,16vw,230px);margin:calc(clamp(150px,16vw,230px)/-2) 0 0 calc(clamp(150px,16vw,230px)/-2);border-radius:50%;background-repeat:no-repeat;box-shadow:0 0 0 3px #fff,0 0 0 4px rgba(47,127,121,.35),0 24px 40px -14px rgba(0,0,0,.45);opacity:0;transform:scale(.7);transition:opacity .25s,transform .3s var(--ease);pointer-events:none}
-.lens.on{opacity:1;transform:scale(1)}
-.lupe-hint{position:absolute;left:18px;bottom:18px;padding:8px 15px;border-radius:999px;background:rgba(255,255,255,.92);font-size:13px;font-weight:500;pointer-events:none;transition:opacity .3s}
-@media (max-width:900px){.lupe-grid{grid-template-columns:1fr}.lupe-ph{height:clamp(300px,60dvh,520px)}}
+/* Fotostapel: deck of real photos, top card goes to the back */
+.stapel{background:radial-gradient(45% 55% at 100% 30%,rgba(176,222,214,.4),transparent 70%),radial-gradient(40% 50% at 0% 90%,rgba(205,232,226,.55),transparent 70%),var(--bg)}
+.st-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);grid-template-areas:"t d" "s d";grid-template-rows:auto 1fr;column-gap:clamp(28px,5vw,72px);row-gap:0}
+.st-text{grid-area:t;align-self:end}.deck{grid-area:d}.st-side{grid-area:s;align-self:start}
+.st-lead{color:var(--ink2);font-size:17.5px;margin:18px 0 26px;max-width:27em}
+.st-cap{font-family:var(--serif);font-size:clamp(24px,2.4vw,32px);font-style:italic;color:var(--ink);min-height:1.3em;transition:opacity .3s,transform .3s var(--ease)}
+.st-cap.out{opacity:0;transform:translateY(8px)}
+.st-ctl{display:flex;align-items:center;gap:14px;margin-top:18px}
+.st-ctl .pk{flex:none}
+.st-num{font-variant-numeric:tabular-nums;font-size:14px;color:var(--ink2);min-width:4.5em;text-align:center}
+.st-wa{margin-top:26px}
+.deck{position:relative;height:clamp(340px,calc(100vh - 210px),660px);height:clamp(340px,calc(100dvh - 210px),660px);display:grid;place-items:center;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.card{position:absolute;height:88%;aspect-ratio:4/5;max-width:86%;border-radius:26px;overflow:hidden;background:#E3EEEB;border:7px solid #fff;box-shadow:0 30px 60px -36px rgba(31,43,42,.55),0 2px 6px rgba(31,43,42,.08);transform:translate(var(--x,0px),var(--y,0px)) rotate(var(--r,0deg)) scale(var(--s,1));transition:transform .55s var(--ease),opacity .45s,box-shadow .3s;will-change:transform}
+.card img{width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
+.card.top{cursor:grab}
+.card.drag{transition:none;cursor:grabbing}
+.card.hide{opacity:0}
+@media (hover:hover){.ready .card.top:not(.drag):hover{box-shadow:0 40px 70px -34px rgba(31,43,42,.6),0 0 0 3px rgba(79,166,156,.45)}}
+.deck-hint{position:absolute;left:50%;bottom:-4px;transform:translateX(-50%);padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.92);font-size:13px;font-weight:500;color:var(--ink2);pointer-events:none;white-space:nowrap;transition:opacity .4s;box-shadow:0 6px 16px -10px rgba(31,43,42,.4)}
+@media (max-width:900px){.stapel.sec{padding:36px 0}.st-grid{grid-template-columns:1fr;grid-template-areas:"t" "d" "s";grid-template-rows:auto;row-gap:14px}.st-lead{margin:10px 0 0;font-size:16px}.deck{height:clamp(170px,calc(100vh - 490px),480px);height:clamp(170px,calc(100dvh - 490px),480px)}.card{height:94%}.deck-hint{display:none}.st-side{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px}.st-cap{width:100%;text-align:center;font-size:22px}.st-ctl{margin:0;gap:8px}.st-wa{margin:0;height:44px;padding:0 20px}}
+@media (max-width:900px) and (max-height:620px){.st-lead{display:none}.stapel.sec{padding:24px 0}}
+@media (max-width:900px) and (max-height:500px) and (orientation:landscape){.st-grid{grid-template-columns:1fr 1fr;grid-template-areas:"t d" "s d";column-gap:24px}.st-text{align-self:end}.deck{height:clamp(200px,calc(100dvh - 140px),360px)}.st-side{align-self:start}}
 
 /* gate: nothing reacts while its entrance runs */
 .top.gate:not(.ready),.hero.gate:not(.ready),.rv:not(.ready){pointer-events:none}
@@ -444,15 +450,19 @@ footer .soc{margin-left:auto;display:flex;gap:22px}
 </section>
 
 
-<section class="sec lupe gate" id="lupe">
-  <div class="wrap lupe-grid">
-    <div class="lupe-text rv">
-      <p class="kicker">Detail</p>
-      <h2>Unter der <em>Lupe</em></h2>
-      <p class="lupe-lead">Fahren Sie mit der Maus über das Foto – auf dem Handy antippen und ziehen. So sieht Mimis Arbeit aus der Nähe aus.</p>
-      <div class="lupe-thumbs" id="lupeThumbs"></div>
+<section class="sec stapel gate" id="stapel">
+  <div class="wrap st-grid">
+    <div class="st-text rv">
+      <p class="kicker">Fotostapel</p>
+      <h2>Zum <em>Durchblättern</em></h2>
+      <p class="st-lead">Zwölf weitere Arbeiten aus dem Salon. Oberstes Foto antippen oder zur Seite schieben – es wandert nach hinten.</p>
     </div>
-    <div class="lupe-ph rv" id="lupePh"><img id="lupeImg" src="img/h/z_h1.jpg" alt="Nude-Nägel mit Silber-Design in Nahaufnahme – Arbeit aus dem Minh Nail Salon"><div class="lens" id="lens"></div><span class="lupe-hint" id="lupeHint">Mit der Maus darüberfahren</span></div>
+    <div class="deck rv" id="deck" aria-roledescription="Fotostapel" aria-label="Fotostapel mit Arbeiten aus dem Minh Nail Salon"><span class="deck-hint" id="deckHint">Antippen oder zur Seite schieben</span></div>
+    <div class="st-side rv">
+      <p class="st-cap" id="stCap" aria-live="polite">&nbsp;</p>
+      <div class="st-ctl"><button class="pk" id="stPrev" type="button" aria-label="Vorheriges Foto"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><span class="st-num" id="stNum">1 / 12</span><button class="pk" id="stNext" type="button" aria-label="Nächstes Foto"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button></div>
+      <a class="btn btn-line st-wa" id="stWa" href="https://wa.me/41764154339" target="_blank" rel="noopener">So etwas anfragen</a>
+    </div>
   </div>
 </section>
 
@@ -634,21 +644,38 @@ carTrack.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefaul
 carTrack.tabIndex=0;
 
 
-/* Unter der Lupe: magnifier over real high-resolution photos */
-const LUPE=[['z_h1','Nude mit Silber'],['z_h3','Silber-Stiletto'],['z_h0','Rot mit Glitzer']];
-const lupePh=$('#lupePh'),lupeImg=$('#lupeImg'),lens=$('#lens'),lupeThumbs=$('#lupeThumbs');
-if('ontouchstart' in window||!matchMedia('(hover:hover)').matches)$('#lupeHint').textContent='Antippen und ziehen';
-LUPE.forEach(([f,n],i)=>{const b=document.createElement('button');b.type='button';b.className='lt'+(i?'':' on');b.setAttribute('aria-label',n);b.innerHTML='<img src="img/h/'+f+'.jpg" alt="" loading="lazy">';
-  b.addEventListener('click',()=>{$$('.lt').forEach(x=>x.classList.toggle('on',x===b));lupeImg.style.opacity=0;setTimeout(()=>{lupeImg.src='img/h/'+f+'.jpg';lupeImg.onload=()=>{lupeImg.style.opacity=1};lens.style.backgroundImage='url(img/h/'+f+'.jpg)'},220)});lupeThumbs.appendChild(b)});
-lens.style.backgroundImage='url(img/h/z_h1.jpg)';
-function lensAt(cx,cy){const r=lupePh.getBoundingClientRect();const x=cx-r.left,y=cy-r.top;if(x<0||y<0||x>r.width||y>r.height){lens.classList.remove('on');return}
-  const nw=lupeImg.naturalWidth||2000,nh=lupeImg.naturalHeight||2400;const sc=Math.max(r.width/nw,r.height/nh);const ox=(r.width-nw*sc)/2,oy=(r.height-nh*sc)/2;const k=2.6;
-  const lw=lens.offsetWidth/2;lens.style.left=x+'px';lens.style.top=y+'px';
-  lens.style.backgroundSize=(nw*sc*k)+'px '+(nh*sc*k)+'px';lens.style.backgroundPosition=(-((x-ox)*k-lw))+'px '+(-((y-oy)*k-lw))+'px';lens.classList.add('on');$('#lupeHint').style.opacity=0}
-lupePh.addEventListener('pointermove',e=>{if(!lupePh.classList.contains('ready'))return;if(e.pointerType==='mouse'||e.buttons)lensAt(e.clientX,e.clientY)});
-lupePh.addEventListener('pointerdown',e=>{if(!lupePh.classList.contains('ready'))return;lensAt(e.clientX,e.clientY)});
-lupePh.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse')lens.classList.remove('on')});
-lupePh.addEventListener('pointerup',e=>{if(e.pointerType!=='mouse')setTimeout(()=>lens.classList.remove('on'),900)});
+/* Fotostapel: the top photo goes to the back of the deck (click, arrow, drag). No wheel handling: the wheel always scrolls the page. */
+const DECK=[['h80','Rot, spitz gefeilt'],['h124','Hellblau mit Silber'],['h256','Mattgrün mit Gold'],['h157','Rosa French'],['h115','Kobaltblau'],['h276','Flieder mit Steinchen'],['h205','Klassisches Rot'],['h141','Weiss mit Glitzer'],['g32','Violett schimmernd'],['h298','Weiss mit Gold-Akzent'],['h206','French in Rosé'],['h134','Karamell mit Steinchen']];
+const deck=$('#deck'),stCap=$('#stCap'),stNum=$('#stNum'),stWa=$('#stWa');
+const cards=DECK.map(([f,n],i)=>{const c=document.createElement('div');c.className='card';c.innerHTML='<img src="img/s/'+f+'.jpg" alt="'+n+' – Arbeit aus dem Minh Nail Salon" loading="'+(i<4?'eager':'lazy')+'" draggable="false">';deck.insertBefore(c,$('#deckHint'));return c});
+const TILT=[-2.5,3.2,-4.5,5,-1.2,3.8,-5.4,1.8];
+let order=cards.map((c,i)=>i),busy=false;
+function layDeck(){order.forEach((ci,pos)=>{const c=cards[ci];const t=TILT[ci%TILT.length];
+  c.style.zIndex=100-pos;c.classList.toggle('top',pos===0);c.classList.toggle('hide',pos>4);
+  c.style.setProperty('--r',(pos===0?0:t*1.5)+'deg');c.style.setProperty('--x',(pos===0?0:t*5)+'px');c.style.setProperty('--y',(pos*-4)+'px');c.style.setProperty('--s',(1-pos*.03).toFixed(3));c.setAttribute('aria-hidden',pos?'true':'false')});
+  const ci=order[0];stCap.classList.add('out');setTimeout(()=>{stCap.textContent=DECK[ci][1];stCap.classList.remove('out')},180);
+  stNum.textContent=(ci+1)+' / '+DECK.length;
+  stWa.href='https://wa.me/41764154339?text='+encodeURIComponent('Hallo Mimi, ich hätte gern einen Termin. Wie auf Ihrem Foto: '+DECK[ci][1]+'. Vielen Dank!')}
+function sendBack(dir){if(busy)return;busy=true;const c=cards[order[0]];hint(0);
+  c.style.setProperty('--x',(dir*115)+'%');c.style.setProperty('--r',(dir*14)+'deg');c.style.setProperty('--y','-10px');
+  setTimeout(()=>{order.push(order.shift());c.style.zIndex=1;layDeck();setTimeout(()=>busy=false,300)},330)}
+function bringBack(){if(busy)return;busy=true;hint(0);const ci=order.pop();order.unshift(ci);const c=cards[ci];
+  c.style.transition='none';c.style.zIndex=200;c.classList.remove('hide');c.style.setProperty('--x','-115%');c.style.setProperty('--r','-14deg');c.offsetWidth;c.style.transition='';
+  layDeck();setTimeout(()=>busy=false,500)}
+function hint(v){$('#deckHint').style.opacity=v}
+$('#stNext').addEventListener('click',()=>sendBack(1));
+$('#stPrev').addEventListener('click',bringBack);
+let dx0=null,dy0=0,dX=0,dragC=null,moved=false;
+deck.addEventListener('pointerdown',e=>{if(!deck.classList.contains('ready')||busy)return;const c=e.target.closest('.card.top');if(!c)return;dragC=c;dx0=e.clientX;dy0=e.clientY;dX=0;moved=false});
+addEventListener('pointermove',e=>{if(!dragC)return;dX=e.clientX-dx0;const dy=e.clientY-dy0;
+  if(!moved){if(Math.abs(dX)<6)return;if(Math.abs(dy)>Math.abs(dX)){dragC=null;return}moved=true;dragC.classList.add('drag');try{dragC.setPointerCapture(e.pointerId)}catch(_){}}
+  dragC.style.setProperty('--x',dX+'px');dragC.style.setProperty('--r',(dX/18)+'deg')});
+function endDrag(){if(!dragC)return;const c=dragC;dragC=null;c.classList.remove('drag');
+  if(!moved){sendBack(1);return}
+  if(Math.abs(dX)>70)sendBack(dX>0?1:-1);else{c.style.setProperty('--x','0px');c.style.setProperty('--r','0deg')}}
+addEventListener('pointerup',endDrag);addEventListener('pointercancel',()=>{if(dragC){dragC.classList.remove('drag');dragC.style.setProperty('--x','0px');dragC.style.setProperty('--r','0deg');dragC=null}});
+deck.tabIndex=0;deck.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='Enter'||e.key===' '){e.preventDefault();sendBack(1)}if(e.key==='ArrowLeft'){e.preventDefault();bringBack()}});
+layDeck();
 
 /* opening hours on the label */
 const DAYS=['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'];
@@ -662,7 +689,7 @@ selDay(today);
 
 /* nav: thin aquamarine line glides to the section in view */
 const navLinks=$$('.nav a'),navLn=document.querySelector('.nav-ln');
-const spy=[['farbe','#farbe'],['leistungen','#leistungen'],['arbeiten','#arbeiten'],['lupe','#arbeiten'],['stimmen','#stimmen'],['besuch','#besuch']];
+const spy=[['farbe','#farbe'],['leistungen','#leistungen'],['arbeiten','#arbeiten'],['stapel','#arbeiten'],['stimmen','#stimmen'],['besuch','#besuch']];
 function setNav(){let cur=null;for(const [id,h] of spy){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<innerHeight*.42)cur=h}
   navLinks.forEach(a=>a.classList.toggle('on',a.getAttribute('href')===cur));
   const a=navLinks.find(x=>x.getAttribute('href')===cur);
