@@ -60,6 +60,13 @@ h2 em,h1 em{font-style:italic;font-weight:500;color:var(--acc)}
 @media (hover:hover){.ready .nav a:hover{background:var(--blush);color:var(--acc)}}
 .top .btn{height:44px;padding:0 18px;font-size:15px}
 .mob-addr{display:none}
+.hd-addr{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:500;color:var(--ink2);padding:8px 10px;border-radius:999px;transition:background-color .2s,color .2s;white-space:nowrap}
+.hd-addr svg{width:15px;height:15px;color:var(--acc)}
+@media (hover:hover){.ready .hd-addr:hover{background:var(--blush);color:var(--acc)}}
+.where a:first-child{display:none}
+@media (max-width:1240px) and (min-width:1081px){.nav a{padding:8px 10px}}
+@media (max-width:1080px){.hd-addr{margin-left:auto}}
+@media (max-width:900px){.hd-addr{display:none}}
 @media (max-width:900px){
   .mob-addr{display:flex;align-items:center;justify-content:center;gap:7px;height:32px;font-size:13.5px;font-weight:500;color:var(--ink2);border-top:1px solid var(--line);transition:color .2s}
   .mob-addr svg{width:14px;height:14px;color:var(--acc)}
@@ -91,7 +98,7 @@ h2 em,h1 em{font-style:italic;font-weight:500;color:var(--acc)}
 @media (hover:hover){.ready .tip:not(.on):hover .nail{transform:translateY(5px) rotate(-4deg);box-shadow:inset 0 -6px 10px rgba(0,0,0,.12),0 0 0 5px rgba(255,255,255,.9),0 0 22px 4px color-mix(in srgb,var(--t) 45%,transparent)}}
 .pick{display:flex;align-items:baseline;gap:14px;margin:22px 0 28px;min-height:44px}
 .pick small{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);font-weight:600}
-.pick strong{font-family:var(--serif);font-style:italic;font-weight:500;font-size:36px;color:var(--c);transition:color .6s;font-variation-settings:"SOFT" 100,"WONK" 1}
+.pick strong{font-family:var(--serif);font-style:italic;font-weight:500;font-size:36px;color:color-mix(in srgb,var(--c) 55%,var(--ink));transition:color .6s;font-variation-settings:"SOFT" 100,"WONK" 1}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
 .where{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:26px;font-size:15px;color:var(--ink2)}
 .where a{display:inline-flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
@@ -120,7 +127,7 @@ h2 em,h1 em{font-style:italic;font-weight:500;color:var(--acc)}
 .card .ph{display:block;position:relative;aspect-ratio:4/5;border-radius:13px;overflow:hidden;background:#eee}
 .card .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .45s}
 .card p{font-size:13px;line-height:1.35;margin-top:10px;color:var(--ink2)}
-.card p b{display:block;font-family:var(--serif);font-style:italic;font-weight:600;font-size:19px;color:var(--c);transition:color .6s}
+.card p b{display:block;font-family:var(--serif);font-style:italic;font-weight:600;font-size:19px;color:color-mix(in srgb,var(--c) 55%,var(--ink));transition:color .6s}
 @media (hover:hover){.ready .card:hover{transform:rotate(0) translateY(-6px);box-shadow:0 0 0 6px rgba(255,255,255,.7),0 40px 60px -24px rgba(43,26,34,.55)}}
 .hint{position:absolute;z-index:4;right:16px;top:16px;padding:8px 13px;border-radius:999px;background:rgba(255,253,251,.88);backdrop-filter:blur(6px);font-size:13px;font-weight:500;opacity:0;transition:opacity .4s}
 
@@ -145,7 +152,6 @@ section{position:relative}
 .svc-list b{font-weight:600;font-size:18px}
 .svc-list span{color:var(--ink2);font-size:15px;margin-left:auto;text-align:right}
 @media (hover:hover){.ready .svc-list li:hover{background:#fff;border-color:rgba(176,18,63,.22);box-shadow:0 0 0 5px rgba(176,18,63,.06)}.ready .svc-list li:hover .dot{transform:translateY(3px) rotate(-8deg)}}
-.col.feet .svc-list li:hover{background:#fff}
 .quote-mini{margin-top:22px;padding:18px 20px;border-radius:18px;background:rgba(255,255,255,.7);font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.35;transition:box-shadow .2s}
 .quote-mini small{display:block;font-family:var(--sans);font-style:normal;font-size:13px;color:var(--ink2);margin-top:8px}
 @media (hover:hover){.ready .quote-mini:hover{box-shadow:0 0 0 5px rgba(169,188,169,.35)}}
@@ -156,7 +162,7 @@ section{position:relative}
 
 /* gallery ribbon */
 #arbeiten{--tint:#EFE3D6;background:color-mix(in srgb,var(--tint) 16%,var(--bg));transition:background-color .8s ease}
-.ribbon{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x proximity;padding:10px 24px 24px;scrollbar-width:none;cursor:grab}
+.ribbon{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x proximity;padding:18px 24px 24px;scrollbar-width:none;cursor:grab}
 .ribbon::-webkit-scrollbar{display:none}
 .ribbon.drag{cursor:grabbing;scroll-snap-type:none}
 .shot{flex:none;width:260px;aspect-ratio:3/4;border-radius:22px;overflow:hidden;scroll-snap-align:center;position:relative;background:#eee;transition:transform .3s var(--ease),box-shadow .3s}
@@ -173,7 +179,8 @@ section{position:relative}
 /* voices */
 .voices{background:linear-gradient(180deg,var(--bg),var(--blush) 60%,var(--bg))}
 .v-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
-.score{font-family:var(--serif);font-size:clamp(110px,14vw,190px);font-weight:600;line-height:.85;color:var(--acc);font-variation-settings:"SOFT" 100,"WONK" 1}
+.score{display:inline-block;transition:text-shadow .25s,transform .25s;font-family:var(--serif);font-size:clamp(110px,14vw,190px);font-weight:600;line-height:.85;color:var(--acc);font-variation-settings:"SOFT" 100,"WONK" 1}
+@media (hover:hover){.ready .score:hover{text-shadow:0 0 28px rgba(217,52,106,.35);transform:translateY(-3px)}}
 .score-sub{margin-top:14px;font-size:18px}
 .score-sub b{font-weight:600}
 .words{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 30px}
@@ -188,25 +195,6 @@ section{position:relative}
 .say cite{display:block;margin-top:22px;font-style:normal;font-size:15px;color:var(--ink2);transition:opacity .35s}
 .say cite b{color:var(--ink);font-weight:600}
 .say.swap blockquote,.say.swap cite{opacity:0;transform:translateY(8px)}
-
-/* wish slip */
-.wish{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:start}
-.q{padding:26px 0;border-top:1px solid var(--line)}
-.q h3{font-family:var(--sans);font-size:14px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--ink2);margin-bottom:16px;display:flex;gap:12px;align-items:center}
-.q h3 em{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--acc);letter-spacing:0;text-transform:none}
-.chips{display:flex;flex-wrap:wrap;gap:9px}
-.chip{display:inline-flex;align-items:center;gap:8px;padding:10px 17px;border-radius:999px;background:var(--paper);border:1.5px solid var(--line);font-weight:500;font-size:16px;transition:background-color .2s,border-color .2s,box-shadow .2s,color .2s}
-.chip .sw{width:10px;height:17px;border-radius:44% 44% 50% 50%/24% 24% 76% 76%;background:var(--t);box-shadow:inset 0 -3px 4px rgba(0,0,0,.15)}
-.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
-.chip[disabled]{opacity:.45;cursor:not-allowed;text-decoration:line-through}
-@media (hover:hover){.ready .chip:not(.on):not([disabled]):hover{border-color:rgba(176,18,63,.45);box-shadow:0 0 0 5px rgba(176,18,63,.08);color:var(--acc)}}
-.slip{position:sticky;top:100px;padding:34px 32px 30px;border-radius:30px;background:var(--paper);box-shadow:0 40px 70px -40px rgba(43,26,34,.4);overflow:hidden}
-.slip::before{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:var(--c);transition:background-color .6s}
-.slip .kicker{margin-bottom:16px}
-.msg{font-family:var(--serif);font-size:25px;line-height:1.32;min-height:6.6em}
-.msg span{color:var(--acc);font-style:italic}
-.slip .btn{width:100%;justify-content:center;margin-top:12px}
-.slip small{display:block;margin-top:14px;color:var(--ink2);font-size:14px;text-align:center}
 
 /* finale: polish bottle */
 .visit{padding:110px 0 70px;background:var(--paper);border-radius:40px 40px 0 0;margin-top:40px}
@@ -256,7 +244,7 @@ footer .soc{margin-left:auto;display:flex;gap:20px}
 @media (hover:hover){.lb button:hover{box-shadow:0 0 0 6px rgba(255,255,255,.25)}}
 
 /* interactivity gate: nothing reacts while its own entrance runs */
-.gate:not(.ready){pointer-events:none}
+.top.gate:not(.ready),.hero.gate:not(.ready),.gate:not(.ready) .rv:not(.ready){pointer-events:none}
 
 /* ---------- responsive ---------- */
 @media (max-width:1080px){
@@ -265,6 +253,7 @@ footer .soc{margin-left:auto;display:flex;gap:20px}
   .card{left:-20px;width:170px}
 }
 @media (max-width:900px){
+  .hint{font-size:0}.hint::after{content:'Farbe unten antippen ↓';font-size:13px}
   .hero{padding-top:14px}
   .hero .wrap{display:flex;flex-direction:column;align-items:stretch;gap:0}
   .hero-text{display:contents}
@@ -281,7 +270,7 @@ footer .soc{margin-left:auto;display:flex;gap:20px}
   .card .ph{width:64px;flex:none;border-radius:11px}
   .card p{margin-top:0;font-size:13px;flex:1;text-align:left}.card p b{display:inline;font-size:18px}
   @media (hover:hover){.ready .card:hover{transform:translateY(-3px)}}
-  .svc-grid,.v-grid,.wish,.v2{grid-template-columns:1fr}
+  .svc-grid,.v-grid,.v2{grid-template-columns:1fr}
   .slip{position:relative;top:0}
   .bottle{max-width:360px}
   .sec{padding:80px 0}
@@ -292,8 +281,8 @@ footer .soc{margin-left:auto;display:flex;gap:20px}
   .top .wrap{height:64px;gap:12px}
   .logo b{font-size:28px}.logo span{display:none}
   .top .btn{padding:0 14px;height:40px;font-size:14px}
-  .tips{gap:5px;justify-content:space-between}
-  .tip{width:calc((100% - 50px)/11);height:56px}
+  .tips{flex-wrap:wrap;justify-content:center;gap:12px 10px}
+  .tip{width:40px;height:64px}
   .pick strong{font-size:30px}
   .lead{font-size:17px}
   .btn{height:50px;padding:0 20px;font-size:15px}
@@ -316,7 +305,7 @@ footer .soc{margin-left:auto;display:flex;gap:20px}
   .visit{border-radius:28px 28px 0 0}
   footer .soc{margin-left:0}
 }
-@media (max-width:340px){.tip{height:48px}.hero h1{font-size:42px}}
+@media (max-width:340px){.stars{font-size:12.5px;gap:6px;white-space:nowrap}.tip{width:36px;height:58px}.hero h1{font-size:42px}}
 @media (orientation:landscape) and (max-height:520px){
   .hero .wrap{grid-template-columns:1fr 1fr}
   .stage-wrap{order:0}
@@ -336,8 +325,9 @@ footer .soc{margin-left:auto;display:flex;gap:20px}
       <a href="#leistungen">Hände &amp; Füsse</a>
       <a href="#arbeiten">Arbeiten</a>
       <a href="#stimmen">Stimmen</a>
-      <a href="#besuch">Besuch</a>
+      <a href="#besuch">Anfahrt</a>
     </nav>
+    <a class="hd-addr" href="https://www.google.com/maps/dir/?api=1&amp;destination=St.+Gallerstrasse+100,+9200+Gossau" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>St. Gallerstrasse 100, Gossau</a>
     <a class="btn btn-fill" href="tel:+41764154339"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>076 415 43 39</a>
   </div>
   <a class="mob-addr" href="https://www.google.com/maps/dir/?api=1&amp;destination=St.+Gallerstrasse+100,+9200+Gossau" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>St. Gallerstrasse 100, 9200 Gossau</a>
@@ -356,12 +346,8 @@ footer .soc{margin-left:auto;display:flex;gap:20px}
       </div>
       <div class="pick"><small>Ihre Farbe</small><strong id="pickName">Bordeaux</strong></div>
       <div class="cta">
-        <a class="btn btn-acc" href="#termin">Wunschtermin zusammenstellen</a>
-        <a class="btn btn-line" href="https://wa.me/41764154339" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2m4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.2-.2-.2-.4-.3"/></svg>WhatsApp</a>
-      </div>
-      <div class="where">
-        <a href="https://www.google.com/maps/dir/?api=1&amp;destination=St.+Gallerstrasse+100,+9200+Gossau" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>St. Gallerstrasse 100, 9200 Gossau</a>
-        <a href="tel:+41764154339"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Termine telefonisch</a>
+        <a class="btn btn-acc wa-pick" href="https://wa.me/41764154339" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2"/></svg>Diese Farbe anfragen</a>
+        <a class="btn btn-line" href="tel:+41764154339"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Anrufen</a>
       </div>
     </div>
 
@@ -371,7 +357,7 @@ footer .soc{margin-left:auto;display:flex;gap:20px}
         <div class="paint" id="pA"><img class="base" src="img/hand.jpg" alt=""><img class="sh" src="img/hand-shade.png" alt=""></div>
         <div class="paint" id="pB"><img class="base" src="img/hand.jpg" alt=""><img class="sh" src="img/hand-shade.png" alt=""></div>
         <img class="gloss" id="gloss" src="img/hand-gloss.png" alt="">
-        <span class="hint" id="hint">Farbe antippen ↓</span>
+        <span class="hint" id="hint">← Farbe antippen</span>
       </div>
       <button class="card" id="card" type="button" aria-label="Echte Arbeit in dieser Farbe ansehen">
         <span class="ph"><img id="cardA" src="img/w/w49.jpg" alt=""><img id="cardB" src="img/w/w49.jpg" alt="" style="opacity:0"></span>
@@ -393,25 +379,24 @@ footer .soc{margin-left:auto;display:flex;gap:20px}
         <h3>Hände</h3>
         <p>Maniküre, Modellage und Design</p>
         <ul class="svc-list">
-          <li style="--t:#EFE3D6"><i class="dot"></i><b>Maniküre</b><span>klassisch, mit Lack</span></li>
-          <li style="--t:#E9B9C0"><i class="dot"></i><b>Russische Maniküre</b><span>Nagelhautpflege mit dem Fräser</span></li>
-          <li style="--t:#D3162E"><i class="dot"></i><b>Gelnägel</b><span>auf dem Naturnagel</span></li>
+          <li style="--t:#EFE3D6"><i class="dot"></i><b>Maniküre</b><span>mit Nagellack</span></li>
+          <li style="--t:#E9B9C0"><i class="dot"></i><b>Russische Maniküre</b></li>
+          <li style="--t:#D3162E"><i class="dot"></i><b>Gelnägel</b></li>
           <li style="--t:#6F1023"><i class="dot"></i><b>Nagelverlängerung</b><span>mit Gel oder Acryl</span></li>
           <li style="--t:#B48DEB"><i class="dot"></i><b>Nail Art</b><span>Steinchen, Muster, Glitzer</span></li>
-          <li style="--t:#3F1A3B"><i class="dot"></i><b>Maniküre für Männer</b><span>gepflegt, ohne Farbe</span></li>
+          <li style="--t:#3F1A3B"><i class="dot"></i><b>Maniküre für Männer</b></li>
         </ul>
         <div class="svc-photo"><img src="img/w/w1.jpg" alt="Babyboomer-Nägel aus dem Minh Nail Salon" loading="lazy"></div>
       </div>
       <div class="col feet rv">
         <h3>Füsse</h3>
-        <p>Pediküre mit Fussmassage im Massagesessel</p>
+        <p>Pflege für die Füsse</p>
         <ul class="svc-list">
-          <li style="--t:#1F5B40"><i class="dot"></i><b>Pediküre</b><span>mit Fussmassage</span></li>
-          <li style="--t:#1E6F87"><i class="dot"></i><b>Pediküre für Männer</b><span>Pflege für Füsse und Nägel</span></li>
+          <li style="--t:#1F5B40"><i class="dot"></i><b>Pediküre</b><span>mit Fussmassage im Massagesessel</span></li>
+          <li style="--t:#1E6F87"><i class="dot"></i><b>Pediküre für Männer</b></li>
           <li style="--t:#FF8A4C"><i class="dot"></i><b>Mani &amp; Pedi</b><span>Hände und Füsse in einem Termin</span></li>
         </ul>
         <div class="quote-mini">«Die Nägel (Hände und Füsse) sind immer perfekt und die Fussmassage ist ein Traum.»<small>viola Imberti · Google-Bewertung</small></div>
-        <div class="quote-mini">«Die Fussmassage und der Massagesessel macht die Behandlung perfekt.»<small>Melina Wälle · Google-Bewertung</small></div>
       </div>
     </div>
   </div>
@@ -420,8 +405,8 @@ footer .soc{margin-left:auto;display:flex;gap:20px}
 <!-- ============ ARBEITEN ============ -->
 <section class="sec gate" id="arbeiten">
   <div class="wrap head rv">
-    <h2>Von <em>Milch</em> bis Pflaume</h2>
-    <p>Arbeiten aus dem Studio, nach Farbe sortiert. Ziehen Sie den Regler über den Farbverlauf – oder wischen Sie durch.</p>
+    <h2>Von <em>Milch</em> bis Tannengrün</h2>
+    <p>Arbeiten aus dem Studio, nach Farbe sortiert. Ziehen Sie den Regler über den Farbverlauf – oder wischen Sie durch die Bilder.</p>
   </div>
   <div class="ribbon rv" id="ribbon"></div>
   <div class="track rv" id="track" role="slider" tabindex="0" aria-label="Farbverlauf" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="thumb" id="thumb"></span></div>
@@ -432,7 +417,7 @@ footer .soc{margin-left:auto;display:flex;gap:20px}
 <section class="sec voices gate" id="stimmen">
   <div class="wrap v-grid">
     <div class="rv">
-      <div class="score">5,0</div>
+      <a class="score" href="https://www.google.com/maps/place/Minh+nailsalon+%2F+Gossau/@47.4164892,9.2543195,17z/data=!4m6!3m5!1s0x479ae1b55eec8a79:0x6523f2b16365e45!8m2!3d47.4164892!4d9.2543195" target="_blank" rel="noopener" aria-label="5,0 – Bewertungen auf Google ansehen">5,0</a>
       <p class="score-sub">Durchschnitt aus <b>212 Bewertungen</b> auf Google</p>
       <p class="kicker" style="margin-top:34px">Was Gäste am häufigsten schreiben</p>
       <div class="words" id="words"></div>
@@ -440,30 +425,6 @@ footer .soc{margin-left:auto;display:flex;gap:20px}
     <div class="say rv" id="say">
       <blockquote id="sayQ"></blockquote>
       <cite id="sayC"></cite>
-    </div>
-  </div>
-</section>
-
-<!-- ============ WUNSCHTERMIN ============ -->
-<section class="sec gate" id="termin">
-  <div class="wrap">
-    <div class="head rv">
-      <h2>Ihr <em>Wunsch</em>termin</h2>
-      <p>Drei Fragen antippen – daraus wird eine fertige Nachricht an Mimi. Senden per WhatsApp oder einfach anrufen.</p>
-    </div>
-    <div class="wish">
-      <div class="rv">
-        <div class="q"><h3><em>1</em> Was darf’s sein?</h3><div class="chips" id="qWhat"></div></div>
-        <div class="q"><h3><em>2</em> Welche Farbe?</h3><div class="chips" id="qColor"></div></div>
-        <div class="q"><h3><em>3</em> Wann passt es?</h3><div class="chips" id="qDay"></div><div class="chips" id="qTime" style="margin-top:10px"></div></div>
-      </div>
-      <aside class="slip rv" aria-live="polite">
-        <p class="kicker">Ihre Nachricht an Mimi</p>
-        <p class="msg" id="msg"></p>
-        <a class="btn btn-wa" id="waBtn" href="https://wa.me/41764154339" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2"/></svg>Per WhatsApp senden</a>
-        <a class="btn btn-line" href="tel:+41764154339"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Lieber anrufen: 076 415 43 39</a>
-        <small>Termine telefonisch oder per WhatsApp</small>
-      </aside>
     </div>
   </div>
 </section>
@@ -483,11 +444,12 @@ footer .soc{margin-left:auto;display:flex;gap:20px}
       </div></div>
     </div>
     <div class="v-text rv">
-      <p class="kicker">Besuch</p>
-      <h2>Ihr <em>Flakon</em> wartet in Gossau</h2>
+      <p class="kicker">Anfahrt</p>
+      <h2>Ihre <em>Farbe</em> wartet in Gossau</h2>
       <p class="addr"><a href="https://www.google.com/maps/dir/?api=1&amp;destination=St.+Gallerstrasse+100,+9200+Gossau" target="_blank" rel="noopener">St. Gallerstrasse 100<br>9200 Gossau SG</a></p>
       <div class="cta">
         <a class="btn btn-acc" href="tel:+41764154339"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>076 415 43 39</a>
+        <a class="btn btn-wa wa-pick" href="https://wa.me/41764154339" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2"/></svg>WhatsApp</a>
         <a class="btn btn-line" href="https://www.google.com/maps/dir/?api=1&amp;destination=St.+Gallerstrasse+100,+9200+Gossau" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l18-8-8 18-2-8z"/></svg>Route planen</a>
       </div>
       <div class="store">
@@ -501,7 +463,7 @@ footer .soc{margin-left:auto;display:flex;gap:20px}
 
 <footer>
   <div class="wrap">
-    <span>© Minh Nail Salon · St. Gallerstrasse 100 · 9200 Gossau SG</span>
+    <span>© 2026 Minh Nail Salon · Gossau SG</span>
     <span class="soc"><a href="https://www.instagram.com/minhnailsalon/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/minhnailsalon" target="_blank" rel="noopener">Facebook</a></span>
   </div>
 </footer>
@@ -542,7 +504,7 @@ COLORS.forEach((c,i)=>{
 });
 
 /* ---- paint layers ---- */
-const pA=$('#pA'),pB=$('#pB');let top=pB,under=pA,busy=false,queued=null;
+const pA=$('#pA'),pB=$('#pB');let top=pB,under=pA,busy=false,queued=null,shown=null;
 function setLayer(el,c){el.classList.toggle('orig',!!c.orig);el.style.setProperty('--pc',c.orig?'transparent':c.hex)}
 async function paint(c,instant){
   if(busy){queued=c;return}
@@ -553,9 +515,9 @@ async function paint(c,instant){
   top.classList.remove('go','full');setLayer(top,c);
   void top.offsetWidth;
   if(instant){top.classList.add('full')}else{top.classList.add('go','full');await wait(1080)}
-  setLayer(under,c);under.classList.add('full');
+  setLayer(under,c);under.classList.add('full');top.classList.remove('go');shown=c;
   busy=false;
-  if(queued){const q=queued;queued=null;if(q!==cur)paint(q)}
+  if(queued){const q=queued;queued=null;if(q!==shown)paint(q)}
 }
 
 /* ---- card crossfade ---- */
@@ -574,8 +536,7 @@ function choose(k,opts={}){
   $$('.tip').forEach(t=>{const on=t.dataset.k===k;t.classList.toggle('on',on);t.setAttribute('aria-checked',on)});
   $('#pickName').textContent=c.n;
   if(changed){paint(c,opts.instant);setCard(c)}
-  $$('#qColor .chip').forEach(ch=>ch.classList.toggle('on',ch.dataset.k===k));
-  wish.color=k;renderMsg();
+  renderMsg();
 }
 $('#card').addEventListener('click',()=>openLB('img/w/'+cur.img+'.jpg'));
 
@@ -624,30 +585,15 @@ function showWord(i,first){const o=WORDS[i];$$('.word').forEach((b,j)=>b.classLi
   if(first){put();return}say.classList.add('swap');setTimeout(put,260)}
 showWord(1,true);
 
-/* ---- wish slip ---- */
-const wish={what:'Gelnägel',color:'bordeaux',day:null,time:'egal'};
-const WHAT=['Maniküre','Russische Maniküre','Gelnägel','Nagelverlängerung','Nail Art','Pediküre','Mani & Pedi'];
+/* ---- WhatsApp text follows the chosen colour ---- */
 const DAYS=['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'];
 const SHORT=['Mo','Di','Mi','Do','Fr','Sa','So'];
 const HRS=['9.00–19.00','9.00–19.00','9.00–19.00','9.00–19.00','9.00–19.00','9.00–17.00',null];
-function chip(parent,label,on,fn,extra){const b=document.createElement('button');b.type='button';b.className='chip';b.innerHTML=label;if(extra)extra(b);b.addEventListener('click',()=>{if(b.disabled)return;fn(b)});parent.appendChild(b);return b}
-WHAT.forEach(w=>chip($('#qWhat'),w,0,b=>{wish.what=w;$$('#qWhat .chip').forEach(x=>x.classList.toggle('on',x===b));renderMsg()},b=>{if(w===wish.what)b.classList.add('on')}));
-COLORS.forEach(c=>chip($('#qColor'),'<i class="sw"></i>'+c.n,0,()=>choose(c.k),b=>{b.dataset.k=c.k;b.style.setProperty('--t',c.hex)}));
-chip($('#qColor'),'Mimi soll mich beraten',0,b=>{wish.color='rat';$$('#qColor .chip').forEach(x=>x.classList.toggle('on',x===b));renderMsg()},b=>b.dataset.k='rat');
-DAYS.forEach((d,i)=>chip($('#qDay'),SHORT[i],0,b=>{wish.day=i;$$('#qDay .chip').forEach(x=>x.classList.toggle('on',x===b));renderMsg()},b=>{b.title=d+(HRS[i]?' · '+HRS[i]:' · geschlossen');if(!HRS[i]){b.disabled=true}}));
-[['Vormittag','vormittags'],['Nachmittag','nachmittags'],['egal','egal']].forEach(([l,v])=>chip($('#qTime'),l==='egal'?'Uhrzeit egal':l,0,b=>{wish.time=v;$$('#qTime .chip').forEach(x=>x.classList.toggle('on',x===b));renderMsg()},b=>{if(v===wish.time)b.classList.add('on')}));
 function renderMsg(){
-  if(!$('#msg'))return;
-  const col=wish.color==='rat'?null:COLORS.find(c=>c.k===wish.color);
-  let farbe=col?(' in <span>'+col.n+'</span>'):', die Farbe möchte ich mit Ihnen aussuchen';
-  if(['Pediküre','Mani & Pedi'].includes(wish.what)&&col)farbe=' in <span>'+col.n+'</span>';
-  let wann='';
-  if(wish.day!==null){wann=' – am liebsten am <span>'+DAYS[wish.day]+'</span>'+(wish.time!=='egal'?' <span>'+wish.time+'</span>':'');}
-  else if(wish.time!=='egal'){wann=' – am liebsten <span>'+wish.time+'</span>'}
-  const html='Hallo Mimi, ich hätte gern einen Termin für <span>'+wish.what+'</span>'+farbe+wann+'. Vielen Dank!';
-  $('#msg').innerHTML=html;
-  const txt=html.replace(/<[^>]+>/g,'');
-  $('#waBtn').href='https://wa.me/41764154339?text='+encodeURIComponent(txt);
+  if(!cur)return;
+  const txt='Hallo Mimi, ich hätte gern einen Termin. Wunschfarbe: '+cur.n+'. Vielen Dank!';
+  document.querySelectorAll('.wa-pick').forEach(a=>a.href='https://wa.me/41764154339?text='+encodeURIComponent(txt));
+  document.querySelectorAll('.wa-name').forEach(e=>e.textContent=cur.n);
 }
 
 /* ---- bottle label: opening hours ---- */
@@ -662,7 +608,7 @@ const topEl=$('#top');addEventListener('scroll',()=>topEl.classList.toggle('scro
 
 /* ---- reveal: once, independent of scroll speed; interactivity only afterwards ---- */
 let pend=$$('.rv');
-function reveal(){pend=pend.filter(el=>{if(el.getBoundingClientRect().top<innerHeight*.92){el.classList.add('in');return false}return true})}
+function reveal(){pend=pend.filter(el=>{if(el.getBoundingClientRect().top<innerHeight*.92){el.classList.add('in');setTimeout(()=>el.classList.add('ready'),el.closest('#besuch')?1700:950);return false}return true})}
 let rtick=false;addEventListener('scroll',()=>{if(rtick)return;rtick=true;setTimeout(()=>{rtick=false;reveal()},60)},{passive:true});
 addEventListener('resize',reveal);
 const rvTimer=setInterval(()=>{reveal();if(!pend.length)clearInterval(rvTimer)},400);
