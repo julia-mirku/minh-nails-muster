@@ -9,7 +9,7 @@
 <meta name="description" content="Minh Nail Salon in Gossau SG – Maniküre, Gelnägel, Nail Art und Pediküre mit Fussmassage. St. Gallerstrasse 100, 9200 Gossau. Termine unter 076 415 43 39.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=Outfit:wght@300..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400..800;1,400..800&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/hand.jpg">
 <style>
 :root{
@@ -17,7 +17,7 @@
   --acc:#B0123F; --acc2:#D9346A; --blush:#F7DFDB; --sage:#A9BCA9; --sage2:#E6EEE6;
   --c:#6F1023; --ctext:#fff;
   --ease:cubic-bezier(.22,.8,.24,1);
-  --serif:"Fraunces",Georgia,serif; --sans:"Outfit",system-ui,sans-serif;
+  --serif:"Petrona",Georgia,serif; --sans:"Be Vietnam Pro",system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -162,7 +162,7 @@ section{position:relative}
 .shot{flex:none;width:260px;aspect-ratio:3/4;border-radius:22px;overflow:hidden;scroll-snap-align:center;position:relative;background:#eee;transition:transform .3s var(--ease),box-shadow .3s}
 .shot:nth-child(3n+2){margin-top:34px}
 .shot img{width:100%;height:100%;object-fit:cover;pointer-events:none}
-.shot i{position:absolute;left:12px;bottom:12px;width:16px;height:16px;border-radius:50%;background:var(--t);box-shadow:0 0 0 3px rgba(255,255,255,.9);opacity:0;transition:opacity .25s}
+.shot i{position:absolute;left:12px;bottom:12px;width:14px;height:24px;border-radius:44% 44% 50% 50%/24% 24% 76% 76%;background:var(--t);box-shadow:0 0 0 3px rgba(255,255,255,.9);opacity:0;transition:opacity .25s}
 @media (hover:hover){.ready .shot:hover{transform:translateY(-8px);box-shadow:0 0 0 5px #fff,0 26px 40px -20px rgba(43,26,34,.5)}.ready .shot:hover i{opacity:1}}
 .track{position:relative;height:30px;margin:6px auto 0;width:min(760px,100% - 48px);cursor:pointer;touch-action:none}
 .track::before{content:"";position:absolute;left:0;right:0;top:12px;height:6px;border-radius:6px;background:linear-gradient(90deg,#efe3d6,#e9b9c0,#ff8a4c,#d3162e,#6f1023,#b0167f,#b48deb,#3f1a3b,#1e6f87,#1f5b40)}
@@ -196,7 +196,7 @@ section{position:relative}
 .q h3 em{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--acc);letter-spacing:0;text-transform:none}
 .chips{display:flex;flex-wrap:wrap;gap:9px}
 .chip{display:inline-flex;align-items:center;gap:8px;padding:10px 17px;border-radius:999px;background:var(--paper);border:1.5px solid var(--line);font-weight:500;font-size:16px;transition:background-color .2s,border-color .2s,box-shadow .2s,color .2s}
-.chip .sw{width:12px;height:12px;border-radius:50%;background:var(--t)}
+.chip .sw{width:10px;height:17px;border-radius:44% 44% 50% 50%/24% 24% 76% 76%;background:var(--t);box-shadow:inset 0 -3px 4px rgba(0,0,0,.15)}
 .chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
 .chip[disabled]{opacity:.45;cursor:not-allowed;text-decoration:line-through}
 @media (hover:hover){.ready .chip:not(.on):not([disabled]):hover{border-color:rgba(176,18,63,.45);box-shadow:0 0 0 5px rgba(176,18,63,.08);color:var(--acc)}}
