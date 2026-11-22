@@ -47,6 +47,16 @@ h1 em,h2 em{font-style:italic;font-weight:500;color:var(--acc);background:linear
 }
 .btn:active{transform:scale(.97)}
 
+
+/* nav: thin aquamarine line glides to the section in view */
+const navLinks=$$('.nav a'),navLn=document.querySelector('.nav-ln');
+const spy=[['farbe','#farbe'],['leistungen','#leistungen'],['arbeiten','#arbeiten'],['lupe','#arbeiten'],['stimmen','#stimmen'],['besuch','#besuch']];
+function setNav(){let cur=null;for(const [id,h] of spy){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<innerHeight*.42)cur=h}
+  navLinks.forEach(a=>a.classList.toggle('on',a.getAttribute('href')===cur));
+  const a=navLinks.find(x=>x.getAttribute('href')===cur);
+  if(a&&navLn){navLn.style.left=(a.offsetLeft+13)+'px';navLn.style.width=(a.offsetWidth-26)+'px';navLn.style.opacity=1}else if(navLn)navLn.style.opacity=0}
+let navRaf=0;addEventListener('scroll',()=>{if(navRaf)return;navRaf=requestAnimationFrame(()=>{navRaf=0;setNav()})},{passive:true});addEventListener('resize',setNav);setTimeout(setNav,600);
+
 /* header */
 .top{position:sticky;top:0;z-index:50;background:rgba(246,250,249,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color .3s}
 .top.scrolled{border-color:var(--line)}
@@ -55,6 +65,9 @@ h1 em,h2 em{font-style:italic;font-weight:500;color:var(--acc);background:linear
 .logo b{font-family:var(--serif);font-style:italic;font-weight:600;font-size:32px;color:var(--acc);letter-spacing:-.02em}
 .logo span{font-size:10px;letter-spacing:.32em;text-transform:uppercase;font-weight:600;color:var(--ink2);margin-top:4px}
 .nav{display:flex;gap:2px;margin-left:auto}
+.nav{position:relative}
+.nav-ln{position:absolute;left:0;bottom:1px;height:2px;width:0;border-radius:2px;background:linear-gradient(90deg,#2F7F79,#9FD3CC);opacity:0;transition:left .55s var(--ease),width .55s var(--ease),opacity .3s;pointer-events:none}
+.nav a.on{color:var(--acc)}
 .nav a{padding:8px 13px;border-radius:999px;font-weight:500;font-size:14.5px;white-space:nowrap;transition:background-color .2s,color .2s}
 @media (hover:hover){.ready .nav a:hover{background:var(--blush);color:var(--acc)}}
 .hd-addr{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:500;color:var(--ink2);padding:8px 10px;border-radius:999px;white-space:nowrap;transition:background-color .2s,color .2s}
@@ -75,7 +88,12 @@ h1 em,h2 em{font-style:italic;font-weight:500;color:var(--acc);background:linear
 .lead b{color:var(--ink);font-weight:600}
 .chart{margin:26px 0 0}
 .chart-h{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:14px;max-width:620px}
-.chart-h strong{font-family:var(--serif);font-style:italic;font-weight:500;font-size:30px;line-height:1;color:var(--ink)}
+.chart-h strong{font-family:var(--serif);font-style:italic;font-weight:500;font-size:30px;line-height:1;color:var(--ink);min-width:5.2em;text-align:center}
+.pick-nav{display:flex;align-items:center;gap:10px}
+.pk{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line2);background:rgba(255,255,255,.7);color:var(--ink);transition:background-color .2s,box-shadow .2s,border-color .2s,color .2s}
+.pk svg{width:15px;height:15px}
+@media (hover:hover){.ready .pk:hover{background:#fff;border-color:transparent;color:var(--acc);box-shadow:0 0 0 1px rgba(79,166,156,.45),0 0 0 6px rgba(79,166,156,.12)}}
+.pk:active{transform:scale(.94)}
 .sws{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:10px;max-width:620px}
 .sw{position:relative;aspect-ratio:4/5;border-radius:12px;overflow:hidden;opacity:0;transform:translateY(14px);transition:box-shadow .3s var(--ease);background:#eee}
 .sw img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
@@ -203,8 +221,6 @@ footer .soc{margin-left:auto;display:flex;gap:22px}
              radial-gradient(30% 40% at 30% 95%,rgba(214,236,231,.5),transparent 70%)}
 .hero .wrap{position:relative;z-index:1}
 .stars{background:linear-gradient(120deg,rgba(255,255,255,.9),rgba(226,242,238,.8))}
-.sw-bar{position:relative;max-width:620px;height:3px;margin-top:14px;border-radius:3px;background:linear-gradient(90deg,#C9A58E 6.25%,#E9C3C3 18.75%,#E07BA0 31.25%,#D3162E 43.75%,#6F1023 56.25%,#5B2C8F 68.75%,#3A2E2A 81.25%,#9A9AA4 93.75%);opacity:.85}
-.sw-bar i{position:absolute;top:-3px;width:28px;height:9px;margin-left:-14px;border-radius:9px;background:var(--ink);box-shadow:0 0 0 3px var(--bg);transition:left .7s var(--ease)}
 .stage-cap{background:linear-gradient(120deg,rgba(255,255,255,.94),rgba(232,245,242,.9))}
 .svc{background:radial-gradient(50% 45% at 0% 0%,rgba(159,211,204,.38),transparent 70%),radial-gradient(45% 45% at 100% 100%,rgba(205,232,226,.55),transparent 70%),var(--paper)}
 .col{background:linear-gradient(170deg,#fff 0%,var(--bg) 55%)}
@@ -247,7 +263,8 @@ footer .soc{margin-left:auto;display:flex;gap:22px}
 .slide blockquote{font-family:var(--serif);font-size:clamp(21px,2.2vw,29px);line-height:1.3;margin:14px 0 20px}
 .slide cite{font-style:normal;font-size:14.5px;color:var(--ink2)}
 .slide cite b{color:var(--ink);font-weight:600}
-.car-dots{display:flex;justify-content:center;gap:8px;margin-top:6px}
+.car-dots{display:flex;justify-content:center;flex-wrap:wrap;gap:7px;margin-top:6px}
+.car-count{font-size:13px;color:var(--ink2);margin-top:16px;letter-spacing:.06em}
 .car-dot{width:8px;height:8px;border-radius:99px;background:var(--line2);transition:width .35s var(--ease),background-color .35s}
 .car-dot.on{width:26px;background:var(--acc)}
 @media (hover:hover){.ready .car-dot:not(.on):hover{background:var(--acc2)}}
@@ -261,6 +278,25 @@ footer .soc{margin-left:auto;display:flex;gap:22px}
 @media (max-width:1100px){.svc-list{grid-template-columns:1fr}}
 @media (max-width:900px) and (min-width:701px){.svc .head{margin-bottom:16px}.col-ph{height:19dvh}.svc-grid{gap:18px}.v2{gap:24px}.col-in{padding:20px 22px 22px}.label{padding:26px 22px}.label .cta .btn{padding:0 16px;font-size:14px}}
 @media (max-width:700px){.svc-grid,.v2{grid-template-columns:1fr}.stage{max-height:none}}
+
+.stage{touch-action:pan-y}
+/* Unter der Lupe */
+.lupe{background:radial-gradient(45% 55% at 100% 30%,rgba(176,222,214,.4),transparent 70%),var(--bg)}
+.lupe-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,72px);align-items:center}
+.lupe-lead{color:var(--ink2);font-size:17.5px;margin:18px 0 26px;max-width:28em}
+.lupe-thumbs{display:flex;gap:12px}
+.lt{width:clamp(64px,7vw,92px);aspect-ratio:4/5;border-radius:14px;overflow:hidden;transition:box-shadow .3s}
+.lt img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.lt.on{box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--ink)}
+@media (hover:hover){.ready .lt:not(.on):hover{box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--acc2)}.ready .lt:hover img{transform:scale(1.07)}}
+.lupe-ph{position:relative;height:clamp(340px,calc(100vh - 200px),700px);height:clamp(340px,calc(100dvh - 200px),700px);border-radius:32px;overflow:hidden;background:#E3EEEB;box-shadow:0 40px 80px -50px rgba(31,43,42,.55);touch-action:pan-y}
+.lupe-ph>img{width:100%;height:100%;object-fit:cover;transition:opacity .45s}
+@media (hover:hover){.ready.lupe-ph{cursor:none}}
+.lens{position:absolute;left:0;top:0;width:clamp(150px,16vw,230px);height:clamp(150px,16vw,230px);margin:calc(clamp(150px,16vw,230px)/-2) 0 0 calc(clamp(150px,16vw,230px)/-2);border-radius:50%;background-repeat:no-repeat;box-shadow:0 0 0 3px #fff,0 0 0 4px rgba(47,127,121,.35),0 24px 40px -14px rgba(0,0,0,.45);opacity:0;transform:scale(.7);transition:opacity .25s,transform .3s var(--ease);pointer-events:none}
+.lens.on{opacity:1;transform:scale(1)}
+.lupe-hint{position:absolute;left:18px;bottom:18px;padding:8px 15px;border-radius:999px;background:rgba(255,255,255,.92);font-size:13px;font-weight:500;pointer-events:none;transition:opacity .3s}
+@media (max-width:900px){.lupe-grid{grid-template-columns:1fr}.lupe-ph{height:clamp(300px,60dvh,520px)}}
+
 /* gate: nothing reacts while its entrance runs */
 .top.gate:not(.ready),.hero.gate:not(.ready),.rv:not(.ready){pointer-events:none}
 
@@ -336,6 +372,7 @@ footer .soc{margin-left:auto;display:flex;gap:22px}
       <a href="#arbeiten">Arbeiten</a>
       <a href="#stimmen">Stimmen</a>
       <a href="#besuch">Anfahrt</a>
+      <i class="nav-ln" aria-hidden="true"></i>
     </nav>
     <a class="hd-addr" href="https://www.google.com/maps/dir/?api=1&amp;destination=St.+Gallerstrasse+100,+9200+Gossau" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>St. Gallerstrasse 100<i>, Gossau</i></span></a>
     <a class="btn btn-ink" href="tel:+41764154339"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>076 415 43 39</a>
@@ -351,9 +388,8 @@ footer .soc{margin-left:auto;display:flex;gap:22px}
       <h1><span class="w">Welche</span> <span class="w">Farbe</span> <span class="w"><em>darf’s</em></span> <span class="w">sein?</span></h1>
       <p class="lead">Tippen Sie auf einen Farbton – das grosse Foto zeigt <b>eine echte Arbeit von Mimi in genau dieser Farbe.</b></p>
       <div class="chart">
-        <div class="chart-h"><span class="kicker">Farbkarte</span><strong id="pickName">Nude</strong></div>
+        <div class="chart-h"><span class="kicker">Farbkarte</span><div class="pick-nav"><button type="button" class="pk" id="pkPrev" aria-label="Vorherige Farbe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button><strong id="pickName">Nude</strong><button type="button" class="pk" id="pkNext" aria-label="Nächste Farbe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
         <div class="sws" id="sws" role="radiogroup" aria-label="Farbkarte"></div>
-        <div class="sw-bar" aria-hidden="true"><i id="swMark"></i></div>
       </div>
       <div class="cta">
         <a class="btn btn-acc wa-pick" href="https://wa.me/41764154339" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2"/></svg>Diese Farbe anfragen</a>
@@ -416,11 +452,25 @@ footer .soc{margin-left:auto;display:flex;gap:22px}
   <div class="track-l rv"><span>hell</span><span>kräftig</span><span>dunkel</span></div>
 </section>
 
+
+<section class="sec lupe gate" id="lupe">
+  <div class="wrap lupe-grid">
+    <div class="lupe-text rv">
+      <p class="kicker">Detail</p>
+      <h2>Unter der <em>Lupe</em></h2>
+      <p class="lupe-lead">Fahren Sie mit der Maus über das Foto – auf dem Handy antippen und ziehen. So sieht Mimis Arbeit aus der Nähe aus.</p>
+      <div class="lupe-thumbs" id="lupeThumbs"></div>
+    </div>
+    <div class="lupe-ph rv" id="lupePh"><img id="lupeImg" src="img/h/z_h1.jpg" alt="Nude-Nägel mit Silber-Design in Nahaufnahme – Arbeit aus dem Minh Nail Salon"><div class="lens" id="lens"></div><span class="lupe-hint" id="lupeHint">Mit der Maus darüberfahren</span></div>
+  </div>
+</section>
+
 <section class="sec voices gate" id="stimmen">
   <div class="wrap v-grid">
     <div class="rv">
       <a class="score" href="https://www.google.com/maps/place/Minh+nailsalon+%2F+Gossau/@47.4164892,9.2543195,17z/data=!4m6!3m5!1s0x479ae1b55eec8a79:0x6523f2b16365e45!8m2!3d47.4164892!4d9.2543195" target="_blank" rel="noopener" aria-label="5,0 – Bewertungen auf Google ansehen">5,0</a>
       <p class="score-sub">Durchschnitt aus <b>212 Bewertungen</b> auf Google</p>
+      <p class="car-count" id="carCount">1 / 14</p>
       <div class="car-nav"><button type="button" class="car-btn" id="carPrev" aria-label="Vorherige Bewertung"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" class="car-btn" id="carNext" aria-label="Nächste Bewertung"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button></div>
     </div>
     <div class="car rv" id="car">
@@ -470,9 +520,9 @@ const wait=ms=>new Promise(r=>setTimeout(r,ms));
 /* Farbkarte: every swatch and every photo is a real work from the studio */
 const COLORS=[
  {k:'nude',n:'Nude',img:'h1',hex:'#C9A58E'},
- {k:'french',n:'French',img:'h117',hex:'#E9C3C3'},
  {k:'rose',n:'Rosé',img:'h282',hex:'#E07BA0'},
  {k:'kirsch',n:'Kirschrot',img:'g3',hex:'#D3162E'},
+ {k:'french',n:'French',img:'h117',hex:'#E9C3C3'},
  {k:'bordeaux',n:'Bordeaux',img:'g49',hex:'#6F1023'},
  {k:'violett',n:'Violett',img:'h71',hex:'#5B2C8F'},
  {k:'schwarz',n:'Schwarz & Gold',img:'h240',hex:'#3A2E2A'},
@@ -508,9 +558,23 @@ function choose(k){
   $$('.sw').forEach(t=>{const on=t.dataset.k===k;t.classList.toggle('on',on);t.setAttribute('aria-checked',on)});
   $('#pickName').textContent=c.n;$('#capSw').src='img/w/'+c.k+'.jpg';
   setStage(c);renderMsg();moveMark();
+  const sw=$$('.sw')[COLORS.indexOf(c)];if(sw&&sws.scrollWidth>sws.clientWidth)sw.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
 }
-function moveMark(){const i=COLORS.indexOf(cur);$('#swMark').style.left=((i+.5)/COLORS.length*100)+'%';$('#farbe').style.setProperty('--glow',cur.hex)}
+function moveMark(){$('#farbe').style.setProperty('--glow',cur.hex)}
 moveMark();
+function stepColor(d){const i=COLORS.indexOf(cur);choose(COLORS[(i+d+COLORS.length)%COLORS.length].k)}
+$('#pkPrev').addEventListener('click',()=>stepColor(-1));
+$('#pkNext').addEventListener('click',()=>stepColor(1));
+sws.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();stepColor(1)}if(e.key==='ArrowLeft'){e.preventDefault();stepColor(-1)}});
+/* sideways trackpad / wheel over the photo or the swatches */
+let wAcc=0,wLock=false;
+const onWheel=e=>{if(Math.abs(e.deltaX)<=Math.abs(e.deltaY))return;e.preventDefault();if(wLock)return;wAcc+=e.deltaX;if(Math.abs(wAcc)>40){stepColor(wAcc>0?1:-1);wAcc=0;wLock=true;setTimeout(()=>wLock=false,550)}};
+$('#stage').addEventListener('wheel',onWheel,{passive:false});sws.addEventListener('wheel',onWheel,{passive:false});
+/* swipe on the big photo */
+let sx=null,sy=0,swiped=false;
+$('#stage').addEventListener('pointerdown',e=>{if(e.pointerType==='mouse')return;sx=e.clientX;sy=e.clientY;swiped=false});
+$('#stage').addEventListener('pointerup',e=>{if(sx===null)return;const dx=e.clientX-sx,dy=e.clientY-sy;sx=null;if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)){swiped=true;stepColor(dx<0?1:-1)}});
+$('#stage').addEventListener('pointercancel',()=>sx=null);
 function renderMsg(){
   const txt='Hallo Mimi, ich hätte gern einen Termin. Wunschfarbe: '+cur.n+'. Vielen Dank!';
   $$('.wa-pick').forEach(a=>a.href='https://wa.me/41764154339?text='+encodeURIComponent(txt));
@@ -524,7 +588,7 @@ function closeLB(){if(!lb.classList.contains('open'))return;lb.classList.remove(
 lb.addEventListener('click',e=>{if(e.target!==$('#lbImg'))closeLB()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLB()});
 const keyOpen=(el,fn)=>{el.addEventListener('click',fn);el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fn()}})};
-keyOpen($('#stage'),()=>openLB('img/h/'+cur.img+'.jpg'));
+keyOpen($('#stage'),()=>{if(swiped){swiped=false;return}openLB('img/h/'+cur.img+'.jpg')});
 keyOpen($('#vphoto'),()=>openLB('img/w/h2.jpg'));
 
 /* gallery ribbon, sorted light to dark */
@@ -550,13 +614,19 @@ syncThumb();tint();
 /* voices: real Google reviews, word for word (only ß→ss) */
 const REV=[
  ['Sehr zufrieden! Grosse Farbauswahl, flexible Termine und tolle Arbeit – einfach top!','Anastasia Bane'],
- ['Ich bin mehr als zufrieden! Der freundliche Umgang und vor allem die hervorragende, präzise Arbeit haben mich begeistert. Die Nägel sind perfekt geworden – einfach makellos und ohne einen einzigen Fehler!','Kristina Vaniher'],
+ ['Ich bin mehr als zufrieden! Der freundliche Umgang und vor allem die hervorragende, präzise Arbeit haben mich begeistert. Die Nägel sind perfekt geworden – einfach makellos und ohne einen einzigen Fehler! Ich kann sie von Herzen weiterempfehlen und komme sehr gerne wieder!','Kristina Vaniher'],
  ['Sehr freundlicher Service und hervorragende Arbeit. Meine Nägel und die Pediküre sind immer wunderschön. Ich komme gerne wieder!','Martina Notar'],
+ ['Liebe Mimi, ich bin jedes Mal aufs neue sehr zufrieden mit Deiner professionellen Arbeit. Die Nägel (Hände und Füsse) sind immer perfekt und die Fussmassage ist ein Traum. Herzlichen Dank! LG Viola','viola Imberti'],
  ['Gehe schon seit vielen Jahren zu Mimi. Sie macht perfekte Nägel. Absolut empfehlenswert!','Bettina Heer'],
- ['Die Behandlung wurde sorgfältig und hygienisch (sehr wichtig) durchgeführt, und das Ergebnis ist wunderschön geworden.','Melina Wälle'],
- ['Seit 1 Jahr bei Mimi für Nägel & Pedicure. Bin sehr zufrieden. Mimi nimmt sich Zeit und macht die Nägel sehr schön.','Eva Holenstein'],
+ ['Mimi ist sehr freundlich und ich habe mich von Anfang an wohlgefühlt. Die Behandlung wurde sorgfältig und hygienisch (sehr wichtig) durchgeführt, und das Ergebnis ist wunderschön geworden. Die Fussmassage und der Massagesessel macht die Behandlung perfekt.','Melina Wälle'],
+ ['Ich komme nun schon zum 4ten mal & bin super Happy mit der Arbeit von Mimi. Fühle mich wohl & willkommen & die arbeit lässt sich für eine lange zeit sehen.','Debby Costa'],
+ ['Seit 1 Jahr bei Mimi für Nägel & Pedicure. Bin sehr zufrieden. Mimi nimmt sich Zeit und macht die Nägel sehr schön. Ich gehe sehr gerne zu ihr','Eva Holenstein'],
  ['Sehr exakte Maniküre und Pediküre mit Gel/Acryl und zuvorkommender Service. Kann ich wärmstens weiter empfehlen.','seligirlstar'],
- ['Mimi ist sehr freundlich und kompetent und macht ihre Arbeit sehr gut. Ich freue mich immer wieder auf den nächsten Termin. Einfach super!','Cristina Gerber']
+ ['Ich war heute das erste Mal bei Minh, ich bin begeistert wie gut sie es gemacht hat, arbeitet sehr sauber und die Massage an den Füssen hat so gut getan, ich freue mich schon auf das nächste Mal.','Saida Ajdarpasic'],
+ ['Mimi ist sehr freundlich und kompetent und macht ihre Arbeit sehr gut. Ich freue mich immer wieder auf den nächsten Termin. Einfach super!','Cristina Gerber'],
+ ['Ich bin super glücklich, endlich die perfekte Nageldesignerin gefunden zu haben! Sie ist sehr nett, sympatisch, genau und kompetent.','Manuela Pugliese'],
+ ['Mimi macht sehr schöne Nägel, Sie ist Freundlich und geht auf die Wünsche ein, ich kann sie nur weiterempfehlen.','Katrin Hiller'],
+ ['Ich bin super zufrieden, ich war das erste mal bei ihr da meine alten nägel eine Katastrophe waren, sie hat meine nägel Gerettet.','Denise Lemke']
 ];
 const carTrack=$('#carTrack'),carDots=$('#carDots');
 REV.forEach(([q,c],i)=>{
@@ -564,13 +634,30 @@ REV.forEach(([q,c],i)=>{
   d.innerHTML='<div class="st">★★★★★</div><blockquote>«'+q+'»</blockquote><cite><b>'+c+'</b> · Google-Bewertung</cite>';carTrack.appendChild(d);
   const b=document.createElement('button');b.type='button';b.className='car-dot'+(i?'':' on');b.setAttribute('aria-label','Bewertung '+(i+1));b.addEventListener('click',()=>goSlide(i));carDots.appendChild(b);
 });
-function goSlide(i){i=(i+REV.length)%REV.length;carTrack.scrollTo({left:carTrack.children[i].offsetLeft-carTrack.children[0].offsetLeft,behavior:'smooth'})}
+function goSlide(i){const n=REV.length;const wrap=i<0||i>=n;i=(i+n)%n;const left=carTrack.children[i].offsetLeft-carTrack.children[0].offsetLeft;if(wrap){carTrack.animate([{opacity:1},{opacity:.0}],{duration:180}).onfinish=()=>{carTrack.style.scrollBehavior='auto';carTrack.scrollLeft=left;carTrack.style.scrollBehavior='';carTrack.animate([{opacity:0},{opacity:1}],{duration:260})};return}carTrack.scrollTo({left,behavior:'smooth'})}
 function curSlide(){return Math.round(carTrack.scrollLeft/Math.max(1,carTrack.children[0].getBoundingClientRect().width+20))}
-let carRaf=0;carTrack.addEventListener('scroll',()=>{if(carRaf)return;carRaf=requestAnimationFrame(()=>{carRaf=0;const k=curSlide();$$('.car-dot').forEach((d,j)=>d.classList.toggle('on',j===k))})},{passive:true});
+let carRaf=0;carTrack.addEventListener('scroll',()=>{if(carRaf)return;carRaf=requestAnimationFrame(()=>{carRaf=0;const k=curSlide();$$('.car-dot').forEach((d,j)=>d.classList.toggle('on',j===k));$('#carCount').textContent=(k+1)+' / '+REV.length})},{passive:true});
 $('#carPrev').addEventListener('click',()=>goSlide(curSlide()-1));
 $('#carNext').addEventListener('click',()=>goSlide(curSlide()+1));
 carTrack.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();goSlide(curSlide()+1)}if(e.key==='ArrowLeft'){e.preventDefault();goSlide(curSlide()-1)}});
 carTrack.tabIndex=0;
+
+
+/* Unter der Lupe: magnifier over real high-resolution photos */
+const LUPE=[['z_h1','Nude mit Silber'],['z_h3','Silber-Stiletto'],['z_h0','Rot mit Glitzer']];
+const lupePh=$('#lupePh'),lupeImg=$('#lupeImg'),lens=$('#lens'),lupeThumbs=$('#lupeThumbs');
+if('ontouchstart' in window||!matchMedia('(hover:hover)').matches)$('#lupeHint').textContent='Antippen und ziehen';
+LUPE.forEach(([f,n],i)=>{const b=document.createElement('button');b.type='button';b.className='lt'+(i?'':' on');b.setAttribute('aria-label',n);b.innerHTML='<img src="img/h/'+f+'.jpg" alt="" loading="lazy">';
+  b.addEventListener('click',()=>{$$('.lt').forEach(x=>x.classList.toggle('on',x===b));lupeImg.style.opacity=0;setTimeout(()=>{lupeImg.src='img/h/'+f+'.jpg';lupeImg.onload=()=>{lupeImg.style.opacity=1};lens.style.backgroundImage='url(img/h/'+f+'.jpg)'},220)});lupeThumbs.appendChild(b)});
+lens.style.backgroundImage='url(img/h/z_h1.jpg)';
+function lensAt(cx,cy){const r=lupePh.getBoundingClientRect();const x=cx-r.left,y=cy-r.top;if(x<0||y<0||x>r.width||y>r.height){lens.classList.remove('on');return}
+  const nw=lupeImg.naturalWidth||2000,nh=lupeImg.naturalHeight||2400;const sc=Math.max(r.width/nw,r.height/nh);const ox=(r.width-nw*sc)/2,oy=(r.height-nh*sc)/2;const k=2.6;
+  const lw=lens.offsetWidth/2;lens.style.left=x+'px';lens.style.top=y+'px';
+  lens.style.backgroundSize=(nw*sc*k)+'px '+(nh*sc*k)+'px';lens.style.backgroundPosition=(-((x-ox)*k-lw))+'px '+(-((y-oy)*k-lw))+'px';lens.classList.add('on');$('#lupeHint').style.opacity=0}
+lupePh.addEventListener('pointermove',e=>{if(!lupePh.classList.contains('ready'))return;if(e.pointerType==='mouse'||e.buttons)lensAt(e.clientX,e.clientY)});
+lupePh.addEventListener('pointerdown',e=>{if(!lupePh.classList.contains('ready'))return;lensAt(e.clientX,e.clientY)});
+lupePh.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse')lens.classList.remove('on')});
+lupePh.addEventListener('pointerup',e=>{if(e.pointerType!=='mouse')setTimeout(()=>lens.classList.remove('on'),900)});
 
 /* opening hours on the label */
 const DAYS=['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'];
