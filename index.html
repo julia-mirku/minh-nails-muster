@@ -261,8 +261,8 @@ footer .soc{margin-left:auto;display:flex;gap:20px}
   .top .wrap{height:64px;gap:12px}
   .logo b{font-size:28px}.logo span{display:none}
   .top .btn{padding:0 14px;height:40px;font-size:14px}
-  .tips{flex-wrap:wrap;justify-content:center;gap:12px 10px}
-  .tip{width:40px;height:64px}
+  .tips{flex-wrap:nowrap;justify-content:space-between;gap:5px}
+  .tip{width:calc((100% - 40px)/9);max-width:40px;height:64px}
   .pick strong{font-size:30px}
   .lead{font-size:17px}
   .btn{height:50px;padding:0 20px;font-size:15px}
@@ -285,7 +285,7 @@ footer .soc{margin-left:auto;display:flex;gap:20px}
   .visit{border-radius:28px 28px 0 0}
   footer .soc{margin-left:0}
 }
-@media (max-width:340px){.stars{font-size:12.5px;gap:6px;white-space:nowrap}.tip{width:36px;height:58px}.hero h1{font-size:42px}}
+@media (max-width:340px){.stars{font-size:12.5px;gap:6px;white-space:nowrap}.tip{height:56px}.hero h1{font-size:42px}}
 @media (orientation:landscape) and (max-height:520px){
   .hero .wrap{grid-template-columns:1fr 1fr}
   .stage-wrap{order:0}
