@@ -48,15 +48,6 @@ h1 em,h2 em{font-style:italic;font-weight:500;color:var(--acc);background:linear
 .btn:active{transform:scale(.97)}
 
 
-/* nav: thin aquamarine line glides to the section in view */
-const navLinks=$$('.nav a'),navLn=document.querySelector('.nav-ln');
-const spy=[['farbe','#farbe'],['leistungen','#leistungen'],['arbeiten','#arbeiten'],['lupe','#arbeiten'],['stimmen','#stimmen'],['besuch','#besuch']];
-function setNav(){let cur=null;for(const [id,h] of spy){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<innerHeight*.42)cur=h}
-  navLinks.forEach(a=>a.classList.toggle('on',a.getAttribute('href')===cur));
-  const a=navLinks.find(x=>x.getAttribute('href')===cur);
-  if(a&&navLn){navLn.style.left=(a.offsetLeft+13)+'px';navLn.style.width=(a.offsetWidth-26)+'px';navLn.style.opacity=1}else if(navLn)navLn.style.opacity=0}
-let navRaf=0;addEventListener('scroll',()=>{if(navRaf)return;navRaf=requestAnimationFrame(()=>{navRaf=0;setNav()})},{passive:true});addEventListener('resize',setNav);setTimeout(setNav,600);
-
 /* header */
 .top{position:sticky;top:0;z-index:50;background:rgba(246,250,249,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color .3s}
 .top.scrolled{border-color:var(--line)}
@@ -668,6 +659,15 @@ const today=(new Date().getDay()+6)%7;
 DAYS.forEach((d,i)=>{const b=document.createElement('button');b.type='button';b.className='day'+(HRS[i]?'':' off');b.textContent=SHORT[i];b.setAttribute('role','tab');b.setAttribute('aria-label',d);b.addEventListener('click',()=>selDay(i));daysEl.appendChild(b)});
 function selDay(i){$$('.day').forEach((b,j)=>{b.classList.toggle('on',i===j);b.setAttribute('aria-selected',i===j)});hoursEl.innerHTML='<span>'+DAYS[i]+(i===today?' · heute':'')+'</span>'+(HRS[i]?HRS[i]+' Uhr':'geschlossen')}
 selDay(today);
+
+/* nav: thin aquamarine line glides to the section in view */
+const navLinks=$$('.nav a'),navLn=document.querySelector('.nav-ln');
+const spy=[['farbe','#farbe'],['leistungen','#leistungen'],['arbeiten','#arbeiten'],['lupe','#arbeiten'],['stimmen','#stimmen'],['besuch','#besuch']];
+function setNav(){let cur=null;for(const [id,h] of spy){const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<innerHeight*.42)cur=h}
+  navLinks.forEach(a=>a.classList.toggle('on',a.getAttribute('href')===cur));
+  const a=navLinks.find(x=>x.getAttribute('href')===cur);
+  if(a&&navLn){navLn.style.left=(a.offsetLeft+13)+'px';navLn.style.width=(a.offsetWidth-26)+'px';navLn.style.opacity=1}else if(navLn)navLn.style.opacity=0}
+let navRaf=0;addEventListener('scroll',()=>{if(navRaf)return;navRaf=requestAnimationFrame(()=>{navRaf=0;setNav()})},{passive:true});addEventListener('resize',setNav);setTimeout(setNav,600);
 
 /* header */
 const topEl=$('#top');addEventListener('scroll',()=>topEl.classList.toggle('scrolled',scrollY>10),{passive:true});
