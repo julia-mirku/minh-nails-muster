@@ -521,9 +521,9 @@ const wait=ms=>new Promise(r=>setTimeout(r,ms));
 /* Farbkarte: every swatch and every photo is a real work from the studio */
 const COLORS=[
  {k:'nude',n:'Nude',img:'h1',hex:'#C9A58E'},
+ {k:'french',n:'French',img:'h117',hex:'#E9C3C3'},
  {k:'rose',n:'Rosé',img:'h282',hex:'#E07BA0'},
  {k:'kirsch',n:'Kirschrot',img:'g3',hex:'#D3162E'},
- {k:'french',n:'French',img:'h117',hex:'#E9C3C3'},
  {k:'bordeaux',n:'Bordeaux',img:'g49',hex:'#6F1023'},
  {k:'violett',n:'Violett',img:'h71',hex:'#5B2C8F'},
  {k:'schwarz',n:'Schwarz & Gold',img:'h240',hex:'#3A2E2A'},
@@ -593,7 +593,7 @@ keyOpen($('#stage'),()=>{if(swiped){swiped=false;return}openLB('img/h/'+cur.img+
 keyOpen($('#vphoto'),()=>openLB('img/w/h2.jpg'));
 
 /* gallery ribbon, sorted light to dark */
-const SHOTS=[['h4','#EADBCF'],['h7','#E8D3C2'],['h89','#F0D2CE'],['h296','#EEDDD2'],['h279','#F28AB8'],['h291','#E79AB5'],['h36','#FF7A3D'],['h0','#B4223D'],['h116','#6E0F1C'],['h75','#3C1F4D']];
+const SHOTS=[['h4','#EADBCF'],['h89','#F0D2CE'],['h296','#EEDDD2'],['h7','#E8D3C2'],['h279','#F28AB8'],['h291','#E79AB5'],['h36','#FF7A3D'],['h0','#B4223D'],['h116','#6E0F1C'],['h75','#3C1F4D']];
 const rib=$('#ribbon');
 SHOTS.forEach(([f,t])=>{const d=document.createElement('button');d.type='button';d.className='shot';d.dataset.t=t;d.style.setProperty('--i',SHOTS.findIndex(x=>x[0]===f)%6);d.setAttribute('aria-label','Foto gross ansehen');d.innerHTML='<img src="img/w/'+f+'.jpg" alt="Nageldesign aus dem Minh Nail Salon" loading="lazy" draggable="false">';d.addEventListener('click',()=>{if(rib.dataset.moved==='1')return;openLB('img/w/'+f+'.jpg')});rib.appendChild(d)});
 let dx=0,sl=0,down=false;
